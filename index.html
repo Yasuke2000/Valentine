@@ -3,45 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Date</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Make sure to link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <title>Valentine's Date Planner</title>
 </head>
 <body>
     <div id="main-container" class="flex">
-        <img id="response-gif" class="cute-gif h-[200px]" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
+        <img id="response-gif" class="cute-gif h-[200px]" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute Bear">
         <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
-            <button id="yes-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
-                Yes
-            </button>
-            <button id="no-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                No
-            </button>
+            <button id="yes-button" class="btn btn-green">Yes</button>
+            <button id="no-button" class="btn btn-red">No</button>
         </div>
-        <div id="date-options-container" class="hidden mt-4">
-            <h2 class="text-2xl mb-2">Select a Date Option:</h2>
-            <button class="date-option bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
-                McDonald's
-            </button>
-            <button class="date-option bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mb-2">
-                Movies
-            </button>
-            <button class="date-option bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mb-2">
-                Walk
-            </button>
-            <button class="date-option bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2">
-                Museum
-            </button>
-            <button id="pick-date" class="date-option bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mb-2">
-                Pick a Date
-            </button>
-        </div>
-        <input id="date-picker" type="date" class="hidden my-2">
-        <button id="submit-date" class="hidden bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-2">
-            Submit Date
-        </button>
         <div id="response-text" class="text-4xl font-bold my-4"></div>
+        <div id="date-picker-container" class="hidden">
+            <h2 class="date-picker-label">Select a Date:</h2>
+            <input type="date" id="date-picker" class="date-picker">
+            <button id="submit-date" class="btn btn-green">Submit</button>
+        </div>
+        <div id="date-options-container" class="hidden">
+            <h2 class="date-picker-label">Or Choose an Option:</h2>
+            <button class="date-option btn">McDonald's</button>
+            <button class="date-option btn">Movies</button>
+            <button class="date-option btn">Park</button>
+        </div>
     </div>
-    <script src="script.js"></script> <!-- Make sure to link to your JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
