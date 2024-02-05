@@ -9,14 +9,69 @@ body {
     background-color: #ffe0e0;
 }
 
-.container {
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+}
+
+.button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.bg-green-500 {
+    background-color: #38a169;
+}
+
+.bg-green-500:hover {
+    background-color: #2f855a;
+}
+
+.bg-red-500 {
+    background-color: #e53e3e;
+}
+
+.bg-red-500:hover {
+    background-color: #c53030;
 }
 
 .hidden {
     display: none;
 }
 
+#response-gif {
+    height: 200px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#date-options-container {
+    margin-top: 20px;
+}
+
 #date-picker {
     margin-top: 10px;
+}
+
+.text-4xl {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
