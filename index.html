@@ -8,7 +8,7 @@
 <body>
     <div id="main-container" class="flex">
         <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
-        <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
+        <h1 id="valentine-question" class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
             <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
                 Yes
@@ -17,7 +17,7 @@
                 No
             </button>
         </div>
-        <form id="date-form" class="hidden" netlify>
+        <form id="date-form" name="valentine-date" method="POST" data-netlify="true" class="hidden">
             <div id="date-options-container">
                 <p>Select a date option:</p>
                 <label><input type="radio" name="date-option" class="date-option" value="McDonald's"> McDonald's</label>
