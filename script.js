@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var noButton = document.getElementById('no-button');
     var responseText = document.getElementById('response-text');
     var dateOptionsContainer = document.getElementById('date-options-container');
+    var datePickerContainer = document.getElementById('date-picker-container'); // Added
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
         dateOptionsContainer.style.display = 'block';
-        datePicker.classList.remove('hidden'); // Show the date picker
+        datePickerContainer.classList.remove('hidden'); // Show the date picker container
     });
 
     noButton.addEventListener('click', function () {
@@ -33,16 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
             responseText.textContent = "Oh, okay :(";
         }
 
-        // Add animation to move the button
+        // Add animation to move the button and make it harder to click
         noButton.classList.add('button-animation');
     });
 
     document.querySelectorAll('.date-option').forEach(function(option) {
         option.addEventListener('click', function() {
             if (this.id === 'pick-date') {
-                datePicker.classList.remove('hidden');
-                submitDateButton.classList.remove('hidden');
-                dateOptionsContainer.style.display = 'none'; // Hide date options
+                datePickerContainer.classList.remove('hidden'); // Show the date picker container
             } else {
                 responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
                 dateOptionsContainer.style.display = 'none';
@@ -54,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (datePicker.value) {
             responseText.textContent = `Date set for ${datePicker.value}! Looking forward to it!`;
             dateOptionsContainer.style.display = 'none';
+            datePickerContainer.style.display = 'none';
         } else {
             responseText.textContent = "Please pick a date.";
         }
