@@ -14,18 +14,24 @@ document.addEventListener('DOMContentLoaded', function () {
         "Is that your final answer?", "You're breaking my heart"
     ];
     var noCount = 0;
+    var noButtonMoved = false;
 
     yesButton.style.animation = 'bounce 0.5s infinite';
 
     yesButton.addEventListener('click', function () {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
-        responseText.textContent = "Ok yay!!! Then we can go on a date.";
+        responseText.innerHTML = "Yay! You said yes!<br>What date should we go on?";
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
         dateForm.classList.remove('hidden');
     });
 
     noButton.addEventListener('click', function () {
+        if (!noButtonMoved) {
+            noButton.addEventListener('mouseover', moveNoButton);
+            noButtonMoved = true;
+        }
+
         if (noCount < noPhrases.length) {
             noButton.textContent = noPhrases[noCount];
             noCount++;
@@ -35,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Logic for moving the "No" button
-    noButton.addEventListener('mouseover', function () {
+    function moveNoButton() {
         const maxX = window.innerWidth - noButton.offsetWidth;
         const maxY = window.innerHeight - noButton.offsetHeight;
         const newX = Math.random() * maxX;
@@ -45,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         noButton.style.position = 'fixed';
         noButton.style.left = newX + 'px';
         noButton.style.top = newY + 'px';
-    });
+    }
 
     dateForm.addEventListener('change', function () {
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dateForm.addEventListener('submit', function (event) {
         event.preventDefault();
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
-        responseText.textContent = `Thanks! Looking forward to our date at ${selectedDateOption.value} on ${datePicker.value}! See you then!`;
+        responseText.textContent = `Great! See you on ${datePicker.value} for our ${selectedDateOption.value} date!`;
         dateForm.classList.add('hidden');
         // Add Netlify form submission logic here
     });
