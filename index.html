@@ -11,7 +11,7 @@
         <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
             <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
-            <button id="no-button" class="button-red button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
         </div>
         <div id="date-options-container" class="hidden">
             <p>Select a date option:</p>
@@ -19,21 +19,11 @@
             <button class="date-option">Movies</button>
             <button class="date-option">Walk in the park</button>
             <button class="date-option">Museum</button>
-            <div id="calendar-container" class="hidden">
-                <p>Select a date:</p>
+            <button class="date-option" id="pick-date">Pick a Date</button>
+            <div id="date-picker-container" class="hidden">
                 <input type="date" id="date-picker">
+                <button id="submit-date">Submit Date</button>
             </div>
-            <form name="contact" netlify class="hidden">
-                <p>
-                    <label>Name <input type="text" name="name" /></label>
-                </p>
-                <p>
-                    <label>Email <input type="email" name="email" /></label>
-                </p>
-                <p>
-                    <button type="submit">Send</button>
-                </p>
-            </form>
         </div>
         <div id="response-text" class="text-4xl font-bold my-4"></div>
     </div>
