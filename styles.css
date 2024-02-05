@@ -92,3 +92,15 @@ body {
     50% { transform: translateX(-30px); }
 }
 
+/* Your existing CSS here */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes bounceAway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-30px); }
+}
+
+
