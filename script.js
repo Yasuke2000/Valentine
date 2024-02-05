@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
+    var noPhrases = [
+        "No", "Are you sure?", "Really sure?", "Think again!", "Last chance!",
+        "Surely not?", "You might regret this!", "Give it another thought!",
+        "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
+        "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
+        "Is that your final answer?", "You're breaking my heart"
+    ];
     
     yesButton.addEventListener('click', function () {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
@@ -18,25 +25,20 @@ document.addEventListener('DOMContentLoaded', function () {
         datePickerContainer.classList.remove('hidden');
     });
 
+    var noCount = 0;
     noButton.addEventListener('click', function () {
-        noButton.style.animation = 'bounce 0.5s';
-        noButton.style.animationIterationCount = 'infinite';
+        if (noCount < noPhrases.length) {
+            responseText.textContent = noPhrases[noCount];
+            noCount++;
+        } else {
+            responseText.textContent = "Oh, okay :(";
+            noButton.style.animation = 'bounceAway 0.5s';
+            noButton.style.animationIterationCount = 'infinite';
+        }
     });
 
     var dateOptionRadios = document.querySelectorAll('input[type="radio"][name="date-option"]');
     var pickDateLabel = document.getElementById('pick-date-label');
-
-    dateOptionRadios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            if (this.value === "Pick a Date") {
-                datePickerContainer.classList.remove('hidden');
-                submitDateButton.classList.remove('hidden');
-            } else {
-                responseText.textContent = `Great! Let's go to ${this.value}!`;
-                dateOptionsContainer.style.display = 'none';
-            }
-        });
-    });
 
     submitDateButton.addEventListener('click', function(e) {
         e.preventDefault(); // Prevent the form from submitting
