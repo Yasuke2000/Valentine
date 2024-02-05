@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
             responseText.style.left = '50%';
             responseText.style.top = '50%';
             responseText.style.transform = 'translate(-50%, -50%)';
+            responseText.style.position = 'relative';
+            responseText.style.left = '0';
+            responseText.style.top = '20px'; // Adjust this value as needed for spacing
+            responseText.style.transform = 'none';
         }
     });
 
