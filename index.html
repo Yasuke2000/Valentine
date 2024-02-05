@@ -6,20 +6,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Will you be my Valentine?</h1>
-        <button id="yes-button">Yes</button>
-        <button id="no-button">No</button>
-
+    <div id="main-container" class="flex">
+        <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
+        <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
+        <div>
+            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
+            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+        </div>
         <div id="date-options-container" class="hidden">
-            <p>Select a standard date option or pick a specific date:</p>
+            <p>Select a date option:</p>
             <button class="date-option">McDonald's</button>
             <button class="date-option">Movies</button>
+            <button class="date-option">Walk in the park</button>
+            <button class="date-option">Museum</button>
+            <button class="date-option" id="pick-date">Pick a Date</button>
             <input type="date" id="date-picker" class="hidden">
             <button id="submit-date" class="hidden">Submit Date</button>
         </div>
-
-        <div id="response-text"></div>
+        <div id="response-text" class="text-4xl font-bold my-4"></div>
     </div>
     <script src="script.js"></script>
 </body>
