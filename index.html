@@ -8,22 +8,28 @@
 <body>
     <div id="main-container" class="flex">
         <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
-        <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
+        <h1 id="valentine-question" class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
-            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
-            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
+                Yes
+            </button>
+            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                No
+            </button>
         </div>
-        <div id="date-options-container" class="hidden">
-            <p>Select a date option:</p>
-            <button class="date-option">McDonald's</button>
-            <button class="date-option">Movies</button>
-            <button class="date-option">Walk in the park</button>
-            <button class="date-option">Museum</button>
-            
-            <input type="date" id="date-picker" class="hidden">
-            <button id="submit-date" class="hidden">Submit Date</button>
-        </div>
-        <div id="response-text" class="text-4xl font-bold my-4"></div>
+        <form id="date-form" name="valentine-date" method="POST" data-netlify="true" action="success.html" class="hidden">
+            <div id="date-options-container">
+                <p>Select a date option:</p>
+                <label><input type="radio" name="date-option" class="date-option" value="McDonald's"> McDonald's</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Movies"> Movies</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Walk in the park"> Walk in the park</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Museum"> Museum</label>
+            </div>
+            <p>Pick a Date:</p>
+            <input type="date" id="date-picker" name="date" required>
+            <button type="submit" id="submit-date" class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 hidden">I choose this</button>
+        </form>
+        <div id="response-text" class="text-4xl font-bold my-4 hidden"></div>
     </div>
     <script src="script.js"></script>
 </body>
