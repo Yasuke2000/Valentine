@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var yesButton = document.getElementById('yes-button');
     var noButton = document.getElementById('no-button');
+    var valentineQuestion = document.getElementById('valentine-question'); // Assuming this is the ID of your Valentine's question element
     var responseText = document.getElementById('response-text');
     var dateForm = document.getElementById('date-form');
     var datePicker = document.getElementById('date-picker');
@@ -16,11 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var noCount = 0;
     var noButtonMoved = false;
 
-    yesButton.style.animation = 'bounce 0.5s infinite';
-
     yesButton.addEventListener('click', function () {
+        valentineQuestion.textContent = "Yay! You said yes! 😊";
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
-        responseText.innerHTML = "Yay! You said yes!<br>What date should we go on?";
+        responseText.innerHTML = "What date should we go on?";
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
         dateForm.classList.remove('hidden');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     noButton.addEventListener('click', function () {
         if (!noButtonMoved) {
-            noButton.addEventListener('mouseover', moveNoButton);
+            moveNoButton();
             noButtonMoved = true;
         }
 
@@ -42,14 +42,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function moveNoButton() {
-        const maxX = window.innerWidth - noButton.offsetWidth;
-        const maxY = window.innerHeight - noButton.offsetHeight;
-        const newX = Math.random() * maxX;
-        const newY = Math.random() * maxY;
+        noButton.removeEventListener('click', moveNoButton);
+        noButton.addEventListener('mouseover', function () {
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
 
-        noButton.style.position = 'fixed';
-        noButton.style.left = newX + 'px';
-        noButton.style.top = newY + 'px';
+            noButton.style.position = 'fixed';
+            noButton.style.left = newX + 'px';
+            noButton.style.top = newY + 'px';
+        });
     }
 
     dateForm.addEventListener('change', function () {
@@ -64,8 +67,21 @@ document.addEventListener('DOMContentLoaded', function () {
     dateForm.addEventListener('submit', function (event) {
         event.preventDefault();
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
-        responseText.textContent = `Great! See you on ${datePicker.value} for our ${selectedDateOption.value} date!`;
-        dateForm.classList.add('hidden');
-        // Add Netlify form submission logic here
+
+        var formData = new FormData(dateForm);
+        formData.append('form-name', dateForm.getAttribute('name'));
+
+        fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+            responseText.textContent = `Great! See you on ${datePicker.value} for our ${selectedDateOption.value} date!`;
+            dateForm.classList.add('hidden');
+        })
+        .catch((error) => {
+            responseText.textContent = 'Submission failed: ' + error;
+        });
     });
 });
