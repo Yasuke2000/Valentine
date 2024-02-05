@@ -80,7 +80,7 @@ body {
 }
 
 /* Date picker styles */
-#date-picker {
+.date-picker {
     margin-top: 0.5rem;
 }
 
