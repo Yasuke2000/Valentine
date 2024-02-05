@@ -10,30 +10,32 @@
         <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
         <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
-            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
-            <button id="no-button" class="button bg-red-500 text-white font-bold py-2 px-4 rounded">No</button>
+            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
+                Yes
+            </button>
+            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                No
+            </button>
         </div>
         <div id="date-options-container" class="hidden">
             <p>Select a date option:</p>
-            <label class="date-option">
-                <input type="radio" name="date-option" value="McDonald's"> McDonald's
+            <label>
+                <input type="radio" name="date-option" class="date-option" value="McDonald's"> McDonald's
             </label>
-            <label class="date-option">
-                <input type="radio" name="date-option" value="Movies"> Movies
+            <label>
+                <input type="radio" name="date-option" class="date-option" value="Movies"> Movies
             </label>
-            <label class="date-option">
-                <input type="radio" name="date-option" value="Walk in the park"> Walk in the park
+            <label>
+                <input type="radio" name="date-option" class="date-option" value="Walk in the park"> Walk in the park
             </label>
-            <label class="date-option">
-                <input type="radio" name="date-option" value="Museum"> Museum
+            <label>
+                <input type="radio" name="date-option" class="date-option" value="Museum"> Museum
             </label>
-            <label class="date-option" id="pick-date-label">
-                <input type="radio" name="date-option" value="Pick a Date"> Pick a Date
+            <label>
+                <input type="radio" name="date-option" class="date-option" id="pick-date" value="Pick a Date"> Pick a Date
             </label>
-            <div id="date-picker-container" class="hidden">
-                <input type="date" id="date-picker">
-                <button id="submit-date" class="button bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">I choose this</button>
-            </div>
+            <input type="date" id="date-picker" class="hidden">
+            <button id="submit-date" class="hidden">I choose this</button>
         </div>
         <div id="response-text" class="text-4xl font-bold my-4"></div>
     </div>
