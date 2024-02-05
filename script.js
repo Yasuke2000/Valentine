@@ -11,14 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
     yesButton.addEventListener('click', function () {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         responseText.textContent = "Ok yay!!! Then we can go on a date.";
-        yesButton.style.display = 'none';
+        yesButton.style.animation = 'bounce 0.5s';
+        yesButton.style.animationIterationCount = 'infinite';
         noButton.style.display = 'none';
         dateOptionsContainer.style.display = 'block';
         datePickerContainer.classList.remove('hidden');
     });
 
     noButton.addEventListener('click', function () {
-        // No change needed for the "No" button
+        noButton.style.animation = 'bounce 0.5s';
+        noButton.style.animationIterationCount = 'infinite';
     });
 
     var dateOptionRadios = document.querySelectorAll('input[type="radio"][name="date-option"]');
@@ -36,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    submitDateButton.addEventListener('click', function() {
+    submitDateButton.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the form from submitting
         var selectedDateOption = document.querySelector('input[type="radio"][name="date-option"]:checked');
         if (selectedDateOption && selectedDateOption.value === "Pick a Date" && datePicker.value) {
             responseText.textContent = `Date set for ${datePicker.value}! Looking forward to it!`;
