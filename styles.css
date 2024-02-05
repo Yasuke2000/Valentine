@@ -1,106 +1,79 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffe0e0; /* Light pink background */
-}
+document.addEventListener('DOMContentLoaded', function () {
+    var noCount = 0;
+    var yesButton = document.getElementById('yes-button');
+    var noButton = document.getElementById('no-button');
+    var responseText = document.getElementById('response-text');
+    var dateOptionsContainer = document.getElementById('date-options-container');
+    var datePicker = document.getElementById('date-picker');
+    var submitDateButton = document.getElementById('submit-date');
+    var responseGif = document.getElementById('response-gif');
+    var noPhrases = [
+        "No", "Are you sure?", "Really sure?", "Think again!", "Last chance!",
+        "Surely not?", "You might regret this!", "Give it another thought!",
+        "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
+        "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
+        "Is that your final answer?", "You're breaking my heart"
+    ];
 
-.flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+    // Animation for the Yes button on page load
+    yesButton.style.animation = 'bounce 0.5s';
+    yesButton.style.animationIterationCount = 'infinite';
 
-.button {
-    cursor: pointer;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    color: white;
-    transition: background-color 0.2s;
-}
+    yesButton.addEventListener('click', function () {
+        responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+        responseText.textContent = "Ok yay!!! Then we can go on a date.";
+        yesButton.style.display = 'none';
+        noButton.style.animation = 'bounceAway 0.5s';
+        noButton.style.animationIterationCount = 'infinite';
+        dateOptionsContainer.style.display = 'block';
+    });
 
-.bg-green-500 {
-    background-color: #38a169; /* Green button */
-}
+    noButton.addEventListener('click', function () {
+        if (noCount < noPhrases.length) {
+            noButton.textContent = noPhrases[noCount];
+            noCount++;
+        } else {
+            noButton.style.display = 'none';
+            responseText.textContent = "Oh, okay :(";
+        }
 
-.bg-green-500:hover {
-    background-color: #2f855a; /* Darker green on hover */
-}
+        // Move the button within a confined area
+        var buttonRect = noButton.getBoundingClientRect();
+        var containerRect = document.getElementById('main-container').getBoundingClientRect();
 
-.bg-red-500 {
-    background-color: #e53e3e; /* Red button */
-}
+        var maxMove = 30;
+        var randomX = Math.random() * maxMove * 2 - maxMove;
+        var randomY = Math.random() * maxMove * 2 - maxMove;
 
-.bg-red-500:hover {
-    background-color: #c53030; /* Darker red on hover */
-}
+        var newX = Math.min(containerRect.right - buttonRect.width, Math.max(containerRect.left, buttonRect.left + randomX));
+        var newY = Math.min(containerRect.bottom - buttonRect.height, Math.max(containerRect.top, buttonRect.top + randomY));
 
-.hidden {
-    display: none;
-}
+        noButton.style.transform = `translate(${newX - buttonRect.left}px, ${newY - buttonRect.top}px)`;
+    });
 
-#response-gif {
-    height: 200px;
-    animation: fadeIn 2s;
-}
+    document.querySelectorAll('.date-option').forEach(function (option) {
+        option.addEventListener('click', function () {
+            if (this.id === 'pick-date') {
+                datePicker.classList.remove('hidden');
+                submitDateButton.classList.remove('hidden');
+            } else {
+                responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
+                dateOptionsContainer.style.display = 'none';
+            }
+        });
+    });
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.text-4xl {
-    font-size: 1.5em;
-    margin: 0.5em 0;
-}
-
-.my-4 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.button-animation {
-    animation: bounce 0.3s ease infinite alternate;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-5px);
-    }
-}
-
-/* Your existing CSS here */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes bounceAway {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-30px); }
-}
-
-/* Your existing CSS here */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes bounceAway {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-30px); }
-}
-
-
+    submitDateButton.addEventListener('click', function () {
+        var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
+        if (selectedDateOption && datePicker.value) {
+            responseText.textContent = `Date set for ${datePicker.value}! Looking forward to ${selectedDateOption.value}!`;
+            dateOptionsContainer.style.display = 'none';
+            submitDateButton.style.display = 'none';
+            // Submit the form here using Netlify form submission method
+            // You can use JavaScript to send a request to the form's action URL with the selected values
+            // Example: https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/
+        } else {
+            responseText.textContent = "You gotta pick something and set a date!";
+        }
+    });
+});
