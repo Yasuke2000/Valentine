@@ -1,71 +1,99 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var yesButton = document.getElementById('yes-button');
-    var noButton = document.getElementById('no-button');
-    var valentineQuestion = document.getElementById('valentine-question');
-    var responseText = document.getElementById('response-text');
-    var dateForm = document.getElementById('date-form');
-    var datePicker = document.getElementById('date-picker');
-    var submitDateButton = document.getElementById('submit-date');
-    var responseGif = document.getElementById('response-gif');
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe0e0;
+}
 
-    var noPhrases = [
-        "Are you sure?", "Really sure?", "Think again!", "Last chance!",
-        "Surely not?", "You might regret this!", "Give it another thought!",
-        "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
-        "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
-        "Is that your final answer?", "You're breaking my heart"
-    ];
-    var noCount = 0;
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
-    var sadReactionGif = "https://media.giphy.com/media/Jq7y34Hgfy01y/giphy.gif"; // Direct link to the sad reaction GIF
+.button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s;
+}
 
-    yesButton.addEventListener('click', function () {
-        valentineQuestion.textContent = "Yay! You said yes! 😊";
-        responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
-        responseText.innerHTML = "What date should we go on?";
-        yesButton.style.display = 'none';
-        noButton.style.display = 'none';
-        dateForm.classList.remove('hidden');
-    });
+.bg-green-500 {
+    background-color: #38a169;
+}
 
-    noButton.addEventListener('click', function () {
-        if (noCount < noPhrases.length) {
-            noButton.textContent = noPhrases[noCount];
-            noCount++;
-            setTimeout(moveNoButton, 2000); // Delay before the button moves
-        } else {
-            noButton.style.display = 'none';
-            responseText.textContent = "Oh, okay :("; // Sad response text
-            responseGif.src = sadReactionGif; // Changing the gif to the sad reaction
-            responseText.classList.remove('hidden');
-            responseText.style.position = 'fixed';
-            responseText.style.left = '50%';
-            responseText.style.top = '50%';
-            responseText.style.transform = 'translate(-50%, -50%)';
-            responseText.style.position = 'relative';
-            responseText.style.left = '0';
-            responseText.style.top = '20px'; // Adjust this value as needed for spacing
-            responseText.style.transform = 'none';
-        }
-    });
+.bg-green-500:hover {
+    background-color: #2f855a;
+}
 
-    function moveNoButton() {
-        const maxX = window.innerWidth - noButton.offsetWidth;
-        const maxY = window.innerHeight - noButton.offsetHeight;
-        const newX = Math.random() * maxX;
-        const newY = Math.random() * maxY;
+.bg-red-500 {
+    background-color: #e53e3e;
+}
 
-        noButton.style.position = 'fixed';
-        noButton.style.left = newX + 'px';
-        noButton.style.top = newY + 'px';
-    }
+.bg-red-500:hover {
+    background-color: #c53030;
+}
 
-    dateForm.addEventListener('change', function () {
-        var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
-        if (selectedDateOption && datePicker.value) {
-            submitDateButton.classList.remove('hidden');
-        } else {
-            submitDateButton.classList.add('hidden');
-        }
-    });
-});
+.hidden {
+    display: none;
+}
+
+#response-gif {
+    height: 200px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.date-option {
+    margin-right: 1rem;
+}
+
+.text-4xl {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hover\:bg-green-700:hover {
+    background-color: #2f855a;
+}
+
+.hover\:bg-red-700:hover {
+    background-color: #c53030;
+}
+
+.cute-gif {
+    height: 200px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.bg-blue-500 {
+    background-color: #4299e1;
+}
+
+.bg-blue-500:hover {
+    background-color: #3182ce;
+}
