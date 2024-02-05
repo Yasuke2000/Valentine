@@ -1,77 +1,90 @@
+/* Reset some default browser styles */
+body, h1, h2, label, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Apply a background color to the body */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffe0e0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
 }
 
-.flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+/* Center the content vertically and horizontally */
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: -4rem;
 }
 
-.button {
-    cursor: pointer;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    color: white;
-    transition: background-color 0.2s;
+/* Style the cute GIF */
+.cute-gif {
+  height: 200px;
+  animation: fadeIn 2s;
 }
 
-.bg-green-500 {
-    background-color: #38a169;
-}
-
-.bg-green-500:hover {
-    background-color: #2f855a;
-}
-
-.bg-red-500 {
-    background-color: #e53e3e;
-}
-
-.bg-red-500:hover {
-    background-color: #c53030;
-}
-
-.hidden {
-    display: none;
-}
-
-#response-gif {
-    height: 200px;
-    animation: fadeIn 2s;
-}
-
+/* Define keyframes for the fadeIn animation */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-#date-options-container {
-    margin-top: 20px;
-}
-
-#date-picker {
-    margin-top: 10px;
-}
-
+/* Style the main heading */
 .text-4xl {
-    font-size: 1.5em;
-    margin: 0.5em 0;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.my-4 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+/* Style the form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Style the radio buttons and labels */
+label {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #38a169;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #2f855a;
+}
+
+/* Style the response text */
+#response-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
 }
