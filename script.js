@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     var yesButton = document.getElementById('yes-button');
     var noButton = document.getElementById('no-button');
-    var valentineQuestion = document.getElementById('valentine-question'); // Ensure this is the ID of your Valentine's Day question
+    var valentineQuestion = document.getElementById('valentine-question');
     var responseText = document.getElementById('response-text');
     var dateForm = document.getElementById('date-form');
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
+
     var noPhrases = [
         "Are you sure?", "Really sure?", "Think again!", "Last chance!",
         "Surely not?", "You might regret this!", "Give it another thought!",
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         "Is that your final answer?", "You're breaking my heart"
     ];
     var noCount = 0;
+
+    var sadReactionGif = "https://media.giphy.com/media/Jq7y34Hgfy01y/giphy.gif"; // Direct link to the sad reaction GIF
 
     yesButton.addEventListener('click', function () {
         valentineQuestion.textContent = "Yay! You said yes! 😊";
@@ -32,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(moveNoButton, 2000); // Delay before the button moves
         } else {
             noButton.style.display = 'none';
-            responseText.textContent = "Oh, okay :(";
+            responseText.textContent = "Oh, okay :("; // Sad response text
+            responseGif.src = sadReactionGif; // Changing the gif to the sad reaction
+            responseText.classList.remove('hidden');
             responseText.style.position = 'fixed';
             responseText.style.left = '50%';
             responseText.style.top = '50%';
