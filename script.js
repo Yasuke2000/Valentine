@@ -15,11 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
         "Is that your final answer?", "You're breaking my heart"
     ];
     
+    dateOptionsContainer.style.display = 'none'; // Hide date options initially
+    datePicker.style.display = 'none'; // Hide date picker initially
+    submitDateButton.style.display = 'none'; // Hide submit button initially
+
     yesButton.addEventListener('click', function () {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         responseText.textContent = "Ok yay!!! Then we can go on a date.";
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
+        dateOptionsContainer.style.display = 'block'; // Show date options
     });
 
     noButton.addEventListener('click', function () {
