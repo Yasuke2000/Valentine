@@ -17,26 +17,18 @@
                 No
             </button>
         </div>
-        <div id="date-options-container" class="hidden">
-            <p>Select a date option:</p>
-            <label>
-                <input type="radio" name="date-option" class="date-option" value="McDonald's"> McDonald's
-            </label>
-            <label>
-                <input type="radio" name="date-option" class="date-option" value="Movies"> Movies
-            </label>
-            <label>
-                <input type="radio" name="date-option" class="date-option" value="Walk in the park"> Walk in the park
-            </label>
-            <label>
-                <input type="radio" name="date-option" class="date-option" value="Museum"> Museum
-            </label>
-            <label>
-                <input type="radio" name="date-option" class="date-option" id="pick-date" value="Pick a Date"> Pick a Date
-            </label>
-            <input type="date" id="date-picker" class="hidden">
-            <button id="submit-date" class="hidden">I choose this</button>
-        </div>
+        <form id="date-form" class="hidden" netlify>
+            <div id="date-options-container">
+                <p>Select a date option:</p>
+                <label><input type="radio" name="date-option" class="date-option" value="McDonald's"> McDonald's</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Movies"> Movies</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Walk in the park"> Walk in the park</label>
+                <label><input type="radio" name="date-option" class="date-option" value="Museum"> Museum</label>
+            </div>
+            <p>Pick a Date:</p>
+            <input type="date" id="date-picker" name="date" required>
+            <button type="submit" id="submit-date" class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 hidden">I choose this</button>
+        </form>
         <div id="response-text" class="text-4xl font-bold my-4 hidden"></div>
     </div>
     <script src="script.js"></script>
