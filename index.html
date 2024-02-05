@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Valentine's Day</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day Date Picker</title>
+  
 </head>
 <body>
-    <div id="main-container" class="flex">
-        <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
-        <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
-        <div>
-            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
-            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
-        </div>
-        <div id="date-options-container" class="hidden">
-            <p>Select a date option:</p>
-            <button class="date-option">McDonald's</button>
-            <button class="date-option">Movies</button>
-            <button class="date-option">Walk in the park</button>
-            <button class="date-option">Museum</button>
-            <button class="date-option" id="pick-date">Pick a Date</button>
-            <input type="date" id="date-picker" class="hidden">
-            <button id="submit-date" class="hidden">Submit Date</button>
-        </div>
-        <div id="response-text" class="text-4xl font-bold my-4"></div>
-    </div>
-    <script src="script.js"></script>
+  <div id="main-container" class="flex">
+    <img id="response-gif" class="cute-gif h-[200px]" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
+    <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
+    <form name="valentine-date" method="POST" data-netlify="true">
+      <h2>Choose a Date Option:</h2>
+      <label>
+        <input type="radio" name="date-option" value="mcdonalds" />
+        McDonald's
+      </label>
+      <label>
+        <input type="radio" name="date-option" value="movies" />
+        Movies
+      </label>
+      <label>
+        <input type="radio" name="date-option" value="walk" />
+        Evening Walk
+      </label>
+      <label>
+        <input type="radio" name="date-option" value="museum" />
+        Museum Visit
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="response-text" class="text-4xl font-bold my-4"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector("form");
+      const responseText = document.getElementById('response-text');
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        })
+          .then(() => {
+            // Handle success, e.g., show a thank you message
+            responseText.textContent = "Thank you for choosing your date option!";
+            form.style.display = 'none';
+          })
+          .catch((error) => {
+            // Handle error, e.g., show an error message
+            responseText.textContent = "Oops! Something went wrong.";
+          });
+      });
+    });
+  </script>
 </body>
 </html>
