@@ -67,3 +67,16 @@ body {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.button-animation {
+    animation: bounce 0.3s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
