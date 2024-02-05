@@ -35,6 +35,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Logic for moving the "No" button
+    noButton.addEventListener('mouseover', function () {
+        const maxX = window.innerWidth - noButton.offsetWidth;
+        const maxY = window.innerHeight - noButton.offsetHeight;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        noButton.style.position = 'fixed';
+        noButton.style.left = newX + 'px';
+        noButton.style.top = newY + 'px';
+    });
+
     dateForm.addEventListener('change', function () {
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
         if (selectedDateOption && datePicker.value) {
@@ -47,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
     dateForm.addEventListener('submit', function (event) {
         event.preventDefault();
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
-        responseText.textContent = `Date set for ${datePicker.value}! Looking forward to ${selectedDateOption.value}!`;
+        responseText.textContent = `Thanks! Looking forward to our date at ${selectedDateOption.value} on ${datePicker.value}! See you then!`;
         dateForm.classList.add('hidden');
-        // Here, you can add any additional logic for Netlify form submission
+        // Add Netlify form submission logic here
     });
 });
