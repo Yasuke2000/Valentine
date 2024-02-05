@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         responseText.textContent = "Ok yay!!! Then we can go on a date.";
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
-        dateOptionsContainer.style.display = 'block';
     });
 
     noButton.addEventListener('click', function () {
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitDateButton.classList.remove('hidden');
                 dateOptionsContainer.style.display = 'none'; // Hide date options
             } else {
-                responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
+                responseText.textContent = `Great! Let's go to ${this.textContent}!`;
                 dateOptionsContainer.style.display = 'none';
             }
         });
