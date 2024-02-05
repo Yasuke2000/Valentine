@@ -2,38 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Will You Be My Valentine?</title>
 </head>
 <body>
     <div id="main-container" class="flex">
-        <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute GIF">
-        <h1 class="text">Will you be my Valentine?</h1>
+        <img id="response-gif" class="cute-gif" src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" />
+        <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
-            <button id="yes-button" class="button">Yes</button>
-            <button id="no-button" class="button button-red animated-button">No</button>
+            <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
+            <button id="no-button" class="button-red button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
         </div>
-        <div id="response-text" class="text"></div>
-        <div id="date-options-container" class="date-options-container">
-            <label class="date-option-label">
-                <input type="radio" name="date-option" value="mcdonalds"> McDonald's
-            </label>
-            <label class="date-option-label">
-                <input type="radio" name="date-option" value="movies"> Movies
-            </label>
-            <label class="date-option-label">
-                <input type="radio" name="date-option" value="walk"> Evening Walk
-            </label>
-            <label class="date-option-label">
-                <input type="radio" name="date-option" value="museum"> Museum
-            </label>
-            <div class="date-picker-container">
-                <p class="text">Pick a date:</p>
-                <input type="date" id="date-picker" class="date-picker">
-                <button id="submit-date" class="button">I choose this!</button>
-            </div>
+        <div id="date-options-container" class="hidden">
+            <p>Select a date option:</p>
+            <button class="date-option">McDonald's</button>
+            <button class="date-option">Movies</button>
+            <button class="date-option">Walk in the park</button>
+            <button class="date-option">Museum</button>
         </div>
+        <div id="response-text" class="text-4xl font-bold my-4"></div>
     </div>
     <script src="script.js"></script>
 </body>
