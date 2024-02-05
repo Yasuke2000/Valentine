@@ -1,68 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var noCount = 0;
     var yesButton = document.getElementById('yes-button');
     var noButton = document.getElementById('no-button');
+    var valentineQuestion = document.getElementById('valentine-question');
     var responseText = document.getElementById('response-text');
-    var dateOptionsContainer = document.getElementById('date-options-container');
+    var dateForm = document.getElementById('date-form');
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
+
     var noPhrases = [
-        "No", "Are you sure?", "Really sure?", "Think again!", "Last chance!",
+        "Are you sure?", "Really sure?", "Think again!", "Last chance!",
         "Surely not?", "You might regret this!", "Give it another thought!",
         "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
         "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
         "Is that your final answer?", "You're breaking my heart"
     ];
-    
+    var noCount = 0;
+
+    var sadReactionGif = "https://media.giphy.com/media/Jq7y34Hgfy01y/giphy.gif"; // Direct link to the sad reaction GIF
+
     yesButton.addEventListener('click', function () {
+        valentineQuestion.textContent = "Yay! You said yes! 😊";
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
-        responseText.textContent = "Ok yay!!! Then we can go on a date.";
+        responseText.innerHTML = "What date should we go on?";
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
-        dateOptionsContainer.style.display = 'block';
+        dateForm.classList.remove('hidden');
     });
 
     noButton.addEventListener('click', function () {
         if (noCount < noPhrases.length) {
             noButton.textContent = noPhrases[noCount];
             noCount++;
+            setTimeout(moveNoButton, 2000); // Delay before the button moves
         } else {
             noButton.style.display = 'none';
-            responseText.textContent = "Oh, okay :(";
+            responseText.textContent = "Oh, okay :("; // Sad response text
+            responseGif.src = sadReactionGif; // Changing the gif to the sad reaction
+            responseText.classList.remove('hidden');
+            responseText.style.position = 'fixed';
+            responseText.style.left = '50%';
+            responseText.style.top = '50%';
+            responseText.style.transform = 'translate(-50%, -50%)';
+            responseText.style.position = 'relative';
+            responseText.style.left = '0';
+            responseText.style.top = '20px'; // Adjust this value as needed for spacing
+            responseText.style.transform = 'none';
         }
-
-        var buttonRect = noButton.getBoundingClientRect();
-        var containerRect = document.getElementById('main-container').getBoundingClientRect();
-        
-        var maxMove = 30;
-        var randomX = Math.random() * maxMove * 2 - maxMove;
-        var randomY = Math.random() * maxMove * 2 - maxMove;
-
-        var newX = Math.min(containerRect.right - buttonRect.width, Math.max(containerRect.left, buttonRect.left + randomX));
-        var newY = Math.min(containerRect.bottom - buttonRect.height, Math.max(containerRect.top, buttonRect.top + randomY));
-
-        noButton.style.transform = `translate(${newX - buttonRect.left}px, ${newY - buttonRect.top}px)`;
     });
 
-    document.querySelectorAll('.date-option').forEach(function(option) {
-        option.addEventListener('click', function() {
-            if (this.id === 'pick-date') {
-                datePicker.classList.remove('hidden');
-                submitDateButton.classList.remove('hidden');
-            } else {
-                responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
-                dateOptionsContainer.style.display = 'none';
-            }
-        });
-    });
+    function moveNoButton() {
+        const maxX = window.innerWidth - noButton.offsetWidth;
+        const maxY = window.innerHeight - noButton.offsetHeight;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
 
-    submitDateButton.addEventListener('click', function() {
-        if (datePicker.value) {
-            responseText.textContent = `Date set for ${datePicker.value}! Looking forward to it!`;
-            dateOptionsContainer.style.display = 'none';
+        noButton.style.position = 'fixed';
+        noButton.style.left = newX + 'px';
+        noButton.style.top = newY + 'px';
+    }
+
+    dateForm.addEventListener('change', function () {
+        var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
+        if (selectedDateOption && datePicker.value) {
+            submitDateButton.classList.remove('hidden');
         } else {
-            responseText.textContent = "Please pick a date.";
+            submitDateButton.classList.add('hidden');
         }
     });
 });
