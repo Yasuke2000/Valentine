@@ -69,6 +69,21 @@ body {
     }
 }
 
+.bounce-away {
+    animation: bounceAway 1s ease;
+}
+
+@keyframes bounceAway {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+}
+
 /* GIF styles */
 .cute-gif {
     height: 200px;
