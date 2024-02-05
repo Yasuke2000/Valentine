@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.id === 'pick-date') {
                 datePicker.classList.remove('hidden');
                 submitDateButton.classList.remove('hidden');
+                dateOptionsContainer.style.display = 'none'; // Hide date options
             } else {
                 responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
                 dateOptionsContainer.style.display = 'none';
@@ -60,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
     submitDateButton.addEventListener('click', function() {
         if (datePicker.value) {
             responseText.textContent = `Date set for ${datePicker.value}! Looking forward to it!`;
-            dateOptionsContainer.style.display = 'none';
+            datePicker.classList.add('hidden'); // Hide date picker
+            submitDateButton.classList.add('hidden'); // Hide submit button
         } else {
             responseText.textContent = "Please pick a date.";
         }
