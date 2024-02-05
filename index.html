@@ -11,19 +11,29 @@
         <h1 class="text-4xl my-4">Will you be my Valentine?</h1>
         <div>
             <button id="yes-button" class="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Yes</button>
-            <button id="no-button" class="button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">No</button>
+            <button id="no-button" class="button bg-red-500 text-white font-bold py-2 px-4 rounded">No</button>
         </div>
         <div id="date-options-container" class="hidden">
             <p>Select a date option:</p>
-            <button class="date-option">McDonald's</button>
-            <button class="date-option">Movies</button>
-            <button class="date-option">Walk in the park</button>
-            <button class="date-option">Museum</button>
-            <button class="date-option" id="pick-date">Pick a Date</button>
+            <label class="date-option">
+                <input type="radio" name="date-option" value="McDonald's"> McDonald's
+            </label>
+            <label class="date-option">
+                <input type="radio" name="date-option" value="Movies"> Movies
+            </label>
+            <label class="date-option">
+                <input type="radio" name="date-option" value="Walk in the park"> Walk in the park
+            </label>
+            <label class="date-option">
+                <input type="radio" name="date-option" value="Museum"> Museum
+            </label>
+            <label class="date-option" id="pick-date-label">
+                <input type="radio" name="date-option" value="Pick a Date"> Pick a Date
+            </label>
             <div id="date-picker-container" class="hidden">
                 <input type="date" id="date-picker">
-                <button id="submit-date">Submit Date</button>
             </div>
+            <button id="submit-date" class="hidden button bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">I choose this</button>
         </div>
         <div id="response-text" class="text-4xl font-bold my-4"></div>
     </div>
