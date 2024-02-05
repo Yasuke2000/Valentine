@@ -14,16 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
         "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
         "Is that your final answer?", "You're breaking my heart"
     ];
-    
-    yesButton.addEventListener('click', function () {
+
+    // Animation for the Yes button on page load
+    responseGif.onload = function() {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         responseText.textContent = "Ok yay!!! Then we can go on a date.";
         yesButton.style.animation = 'bounce 0.5s';
         yesButton.style.animationIterationCount = 'infinite';
-        noButton.style.display = 'none';
-        dateOptionsContainer.style.display = 'block';
-        datePickerContainer.classList.remove('hidden');
-    });
+    };
 
     var noCount = 0;
     noButton.addEventListener('click', function () {
