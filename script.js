@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             noButton.style.display = 'none';
             responseText.textContent = "Oh, okay :(";
+            responseText.style.position = 'fixed';
+            responseText.style.left = '50%';
+            responseText.style.top = '50%';
+            responseText.style.transform = 'translate(-50%, -50%)';
         }
     });
 
