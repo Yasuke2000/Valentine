@@ -1,20 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var noCount = 0;
     var yesButton = document.getElementById('yes-button');
     var noButton = document.getElementById('no-button');
     var responseText = document.getElementById('response-text');
     var dateOptionsContainer = document.getElementById('date-options-container');
-    var datePickerContainer = document.getElementById('date-picker-container'); // Added
+    var datePickerContainer = document.getElementById('date-picker-container');
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
-    var noPhrases = [
-        "No", "Are you sure?", "Really sure?", "Think again!", "Last chance!",
-        "Surely not?", "You might regret this!", "Give it another thought!",
-        "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
-        "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
-        "Is that your final answer?", "You're breaking my heart"
-    ];
     
     yesButton.addEventListener('click', function () {
         responseGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
@@ -22,40 +14,39 @@ document.addEventListener('DOMContentLoaded', function () {
         yesButton.style.display = 'none';
         noButton.style.display = 'none';
         dateOptionsContainer.style.display = 'block';
-        datePickerContainer.classList.remove('hidden'); // Show the date picker container
+        datePickerContainer.classList.remove('hidden');
     });
 
     noButton.addEventListener('click', function () {
-        if (noCount < noPhrases.length) {
-            noButton.textContent = noPhrases[noCount];
-            noCount++;
-        } else {
-            noButton.style.display = 'none';
-            responseText.textContent = "Oh, okay :(";
-        }
-
-        // Add animation to move the button and make it harder to click
-        noButton.classList.add('button-animation');
+        // No change needed for the "No" button
     });
 
-    document.querySelectorAll('.date-option').forEach(function(option) {
-        option.addEventListener('click', function() {
-            if (this.id === 'pick-date') {
-                datePickerContainer.classList.remove('hidden'); // Show the date picker container
+    var dateOptionRadios = document.querySelectorAll('input[type="radio"][name="date-option"]');
+    var pickDateLabel = document.getElementById('pick-date-label');
+
+    dateOptionRadios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            if (this.value === "Pick a Date") {
+                datePickerContainer.classList.remove('hidden');
+                submitDateButton.classList.remove('hidden');
             } else {
-                responseText.textContent = `Great! Let's go to the ${this.textContent}!`;
+                responseText.textContent = `Great! Let's go to ${this.value}!`;
                 dateOptionsContainer.style.display = 'none';
             }
         });
     });
 
     submitDateButton.addEventListener('click', function() {
-        if (datePicker.value) {
+        var selectedDateOption = document.querySelector('input[type="radio"][name="date-option"]:checked');
+        if (selectedDateOption && selectedDateOption.value === "Pick a Date" && datePicker.value) {
             responseText.textContent = `Date set for ${datePicker.value}! Looking forward to it!`;
             dateOptionsContainer.style.display = 'none';
             datePickerContainer.style.display = 'none';
+        } else if (selectedDateOption) {
+            responseText.textContent = `Great! Let's go to ${selectedDateOption.value}!`;
+            dateOptionsContainer.style.display = 'none';
         } else {
-            responseText.textContent = "Please pick a date.";
+            responseText.textContent = "Please select a date option.";
         }
     });
 });
