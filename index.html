@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valentine's Day Date Picker</title>
-  
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="main-container" class="flex">
@@ -33,32 +33,6 @@
     <div id="response-text" class="text-4xl font-bold my-4"></div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.querySelector("form");
-      const responseText = document.getElementById('response-text');
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString(),
-        })
-          .then(() => {
-            // Handle success, e.g., show a thank you message
-            responseText.textContent = "Thank you for choosing your date option!";
-            form.style.display = 'none';
-          })
-          .catch((error) => {
-            // Handle error, e.g., show an error message
-            responseText.textContent = "Oops! Something went wrong.";
-          });
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
