@@ -6,7 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var datePicker = document.getElementById('date-picker');
     var submitDateButton = document.getElementById('submit-date');
     var responseGif = document.getElementById('response-gif');
-    var noPhrases = ["No", "Are you sure?", "Really sure?", ...]; // Add the rest of the phrases
+    var noPhrases = [
+        "Are you sure?", "Really sure?", "Think again!", "Last chance!",
+        "Surely not?", "You might regret this!", "Give it another thought!",
+        "Are you absolutely certain?", "This could be a mistake!", "Have a heart!",
+        "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
+        "Is that your final answer?", "You're breaking my heart"
+    ];
+    var noCount = 0;
 
     yesButton.style.animation = 'bounce 0.5s infinite';
 
@@ -18,21 +25,30 @@ document.addEventListener('DOMContentLoaded', function () {
         dateForm.classList.remove('hidden');
     });
 
-    noButton.addEventListener('click', function () { /* No button logic */ });
+    noButton.addEventListener('click', function () {
+        if (noCount < noPhrases.length) {
+            noButton.textContent = noPhrases[noCount];
+            noCount++;
+        } else {
+            noButton.style.display = 'none';
+            responseText.textContent = "Oh, okay :(";
+        }
+    });
 
-    // Logic to show submit button when both a date option and a date are selected
     dateForm.addEventListener('change', function () {
         var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
         if (selectedDateOption && datePicker.value) {
             submitDateButton.classList.remove('hidden');
+        } else {
+            submitDateButton.classList.add('hidden');
         }
     });
 
-    // Logic for submitting the form
     dateForm.addEventListener('submit', function (event) {
         event.preventDefault();
+        var selectedDateOption = document.querySelector('input[name="date-option"]:checked');
         responseText.textContent = `Date set for ${datePicker.value}! Looking forward to ${selectedDateOption.value}!`;
         dateForm.classList.add('hidden');
-        // Netlify form submission logic here
+        // Here, you can add any additional logic for Netlify form submission
     });
 });
