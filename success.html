@@ -2,15 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Date Confirmed!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="hearts-bg" aria-hidden="true"></div>
+
     <div id="success-container" class="flex">
-        <h1 class="text-4xl my-4">Our Valentine's Date is Set!</h1>
-        <p class="text-lg">Thank you for confirming! I can't wait to spend this special day with you.</p>
-        <img class="celebration-gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif?cid=790b7611uedchgw67x6vy8zy00r640d45p23qtdryyaf33l3&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
+        <h1 class="success-title">Our Valentine's Date is Set! 💕</h1>
+        <p class="success-text">Thank you for saying yes! I can't wait to spend this special day with you. It's going to be amazing!</p>
+        <img class="celebration-gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif?cid=790b7611uedchgw67x6vy8zy00r640d45p23qtdryyaf33l3&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Celebration" />
+        <a href="index.html" class="back-link">← Back to start</a>
     </div>
-    </div>
+
+    <script>
+        // Floating hearts on success page too
+        (function () {
+            var heartsBg = document.getElementById('hearts-bg');
+            var heartChars = ['❤', '♥', '💕', '💗', '💘', '✨'];
+            for (var i = 0; i < 20; i++) {
+                var heart = document.createElement('span');
+                heart.className = 'floating-heart';
+                heart.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+                heart.style.animationDuration = (6 + Math.random() * 10) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heartsBg.appendChild(heart);
+            }
+        })();
+    </script>
 </body>
 </html>
